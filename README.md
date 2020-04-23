@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Notes
 
-## Available Scripts
+This uses auth0-js-9 and Lock 11
 
-In the project directory, you can run:
+#### Auth0 and 0Auth
+- Auth0 is the security provider
+- 0Auth is a secruity protocal.  This is concerned with authentication and authorization.
 
-### `yarn start`
+#### 0Auth Flow
+- The client app sends an authorization request that the user must accept (e.g. give me your user name and password)
+- The user fills out the request and is exchanged for an authorization grant
+- The app sends this grant to the auth server
+- After authenticaion and grant are validated a token is issued to the app
+- A this point the user can request data
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Grant type
+- This will be using the implicit grant type for client-side web apps
+- This means the app will direct the browser to the Auth0 sign-in page
+- Next, after logging in, Auth0 redirects the user to the callback URI we picked along with access and id tokens
+- Finally, the app extracts the tokens from the URI and stores needed data in local storage
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Sign up options
+- This will be using the Auth0 lock widget.  It's probably the easiest to use.
 
-### `yarn test`
+#### AuthO.com getting started
+- Got to auth0.com and sign up
+- After signing up, create a tenant domain. It'll be used for the API endpoints to clients    
+- Next, at the dashboard you need to create a New Application and name it.
+- For application type, this example is a SPA
+- The application tab should provide access the named application.  In there should be info regarding the name, domain, clientID, client secret, etc.
+- In this section you need to specify the Allowed Callback URL (e.g., in this case http://localhost:3000/callback), then save changes.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+#### Auth file
+- You'll be using the auth0.js package installed into package.json for this
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### Tokens
+- options for storing tokens: localstorage, sessionstorage, cookie, memory
+- in the case of cookies, if you have a dedicated server for a react app, storing tokens in an http only cookie w/secure flag enabled is a good approach. This helps protect from x-site scripting. 
+- Auth0 does not recommend storing tokens in localstorage
+- In this case though, we don't have a server
+- For SPA's, auth0 recommends storing tokens in memory
