@@ -22,3 +22,7 @@ REACT_APP_AUTH0_CALLBACK_URL=
 #### App.js
 - Something to note. In index.js we wrapped the App within a Router. This means it'll get the history object from react router. 
 - We use a render to pass the props down to the Home component.
+
+#### Callback.js
+- This is where we will be directed to after a successful login
+- Callback will use regex looking for search items. 
