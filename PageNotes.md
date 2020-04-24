@@ -17,6 +17,9 @@ REACT_APP_AUTH0_CALLBACK_URL=
 - the responseType is what kind of info we want back after authenticating a user.  The token is so we can make API calls. The id_token is from OpenIdConnect. It's a layer over 0Auth.
 - scope is where we specify permissions. 
 - LOGIN  when this.auth0.authorize() is called it will redirect the browser to the Auth0 login page.  This needs to be instantiated in the App.js page.  It will be in the constructor.
+- LOGOUT make sure in auth0.com the following is in the applications: Allowed Logout URLs should be http://localhost:3000 and save.
+- GET ACCESS TOKEN does just that.  It gets the token from local storage.
+- GET PROFILE will return the profile if it's already found.  Notice that it's initialized in the constructor at top. If we don't have a user profile, we'll call the userInfo on Auth0 and pass it the access token.
 - 
 
 #### App.js
