@@ -8,6 +8,7 @@ class Nav extends Component {
             <>
                 <Link to="/">Home</Link>{" "} | {" "}
                 <Link to="/profile">Profile</Link>{" "} | {" "}
+                <Link to="/public">Public</Link>{" "} | {" "}
                 <button onClick={isAuthenticated() ? logout : login}>
                     {isAuthenticated() ? "Log out": "Log In"}
                 </button>

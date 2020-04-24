@@ -29,3 +29,13 @@ REACT_APP_AUTH0_CALLBACK_URL=
 #### Callback.js
 - This is where we will be directed to after a successful login
 - Callback will use regex looking for search items. 
+
+#### Server.js
+This is a basic server so we can make API calls.  We set the server to port 3001.     
+The client is set to 3000
+
+#### Public.js
+- This will, as is stated, be a public page.  
+- Now since our API is hosted on 3001, we need to include a proxy feature included with react
+- In package.json we can add the following "proxy": "http://localhost:3001"
+- This tells react to proxy any calls going to 3000, to go to 3001
