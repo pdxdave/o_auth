@@ -1,4 +1,5 @@
 # Notes
+npm run start  
 
 This uses auth0-js-9 and Lock 11
 
