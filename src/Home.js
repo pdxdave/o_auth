@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 class Home extends Component {
     render() {
-        const {isAuthenticated, login} = this.props.auth
+        const {isAuthenticated, login} = this.props.auth;
         return (
             <div>
                 <h1>Home</h1> 
@@ -14,7 +14,7 @@ class Home extends Component {
                     <button onClick={login}>Log in</button>
                 )}
             </div>
-        )
+        );
     }
 }
 
